@@ -60,7 +60,7 @@ export const useAddNewAppointmentForm = ({
 
     useEffect(() => {
         form.setValue('appointmentTime', '')
-    }, [appointmentDate, physicianId])
+    }, [form, appointmentDate, physicianId])
 
     const { patients } = usePatients()
     const { physicians } = usePhysicians()

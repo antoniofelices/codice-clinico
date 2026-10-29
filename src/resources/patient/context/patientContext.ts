@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-type PatientContextType = {}
+type PatientContextType = object
 export const PatientContext = createContext<PatientContextType | undefined>(
     undefined
 )

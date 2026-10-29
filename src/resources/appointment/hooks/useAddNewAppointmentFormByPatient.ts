@@ -34,7 +34,7 @@ export const useAddNewAppointmentFormByPatient = ({
 
     useEffect(() => {
         form.setValue('appointmentTime', '')
-    }, [appointmentDate, physicianId])
+    }, [form, appointmentDate, physicianId])
 
     const { physicians } = usePhysicians()
     const { slotOptions, isDateDisabled } = useAvailableSlotsByDate(
