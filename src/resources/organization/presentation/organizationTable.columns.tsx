@@ -1,4 +1,4 @@
-import type { ColumnDef } from '@tanstack/react-table'
+import type { DataTableColumnDef } from '@shared/components/ui/DataTable.features'
 import type { NavigateFn } from '@tanstack/react-router'
 import type { OrganizationType } from '@resources/organization/types/organization.model'
 import { ArrowUpDown, ArrowRight } from 'lucide-react'
@@ -6,7 +6,7 @@ import { contentES as content } from './organizationTable.content'
 
 const organizationTableColumns = (
     navigate: NavigateFn
-): ColumnDef<OrganizationType>[] => [
+): DataTableColumnDef<OrganizationType>[] => [
     {
         accessorKey: 'name',
         header: ({ column }) => {

@@ -1,4 +1,4 @@
-import type { ColumnDef } from '@tanstack/react-table'
+import type { DataTableColumnDef } from '@shared/components/ui/DataTable.features'
 import type { NavigateFn } from '@tanstack/react-router'
 import type { AppointmentType } from '@resources/appointment/types/appointment.model'
 import { ArrowUpDown, ArrowRight } from 'lucide-react'
@@ -7,7 +7,7 @@ import { contentES as content } from './appointmentByPractitionerTable.content'
 
 const appointmentByPractitionerTableColumns = (
     navigate: NavigateFn
-): ColumnDef<AppointmentType>[] => [
+): DataTableColumnDef<AppointmentType>[] => [
     {
         id: 'hour',
         accessorKey: 'start',
