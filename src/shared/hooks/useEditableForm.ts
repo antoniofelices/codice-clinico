@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 
 export const useEditableForm = <T>(
     data: T | null,
@@ -8,11 +8,15 @@ export const useEditableForm = <T>(
     const isDataComplete = Boolean(data && completenessCheck(data))
     const [isEditing, setIsEditing] = useState(!isDataComplete)
 
-    useEffect(() => {
+    const [prevIsDataComplete, setPrevIsDataComplete] =
+        useState(isDataComplete)
+
+    if (prevIsDataComplete !== isDataComplete) {
+        setPrevIsDataComplete(isDataComplete)
         if (isDataComplete) {
             setIsEditing(false)
         }
-    }, [isDataComplete])
+    }
 
     const handleToggle = useCallback(() => {
         setIsEditing(!isEditing)

@@ -7,6 +7,7 @@ type PatientProviderProps = {
 }
 
 const PatientProvider = ({
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     patientId,
     children,
     ...props
