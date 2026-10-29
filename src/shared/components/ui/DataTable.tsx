@@ -1,16 +1,13 @@
 import { useMemo, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import type { ColumnDef } from '@tanstack/react-table'
-import type { ColumnFiltersState, SortingState } from '@tanstack/react-table'
+import type { ColumnFiltersState, RowData, SortingState } from '@tanstack/react-table'
+
+import { flexRender, useTable } from '@tanstack/react-table'
 
 import {
-    flexRender,
-    getCoreRowModel,
-    getFilteredRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    useReactTable,
-} from '@tanstack/react-table'
+    dataTableFeatures,
+    type DataTableColumnDef,
+} from '@shared/components/ui/DataTable.features'
 
 import {
     Table,
@@ -24,15 +21,15 @@ import {
 
 import { contentES as content } from './DataTable.content'
 
-type DataTableProps<TData> = {
-    columns: ColumnDef<TData>[]
+type DataTableProps<TData extends RowData> = {
+    columns: DataTableColumnDef<TData>[]
     data: TData[]
     caption?: string
     filterColumn?: string
     filterValue?: string
 }
 
-const DataTable = <TData,>({
+const DataTable = <TData extends RowData>({
     columns,
     data,
     caption,
@@ -52,7 +49,8 @@ const DataTable = <TData,>({
         [filterColumn, filterValue]
     )
 
-    const table = useReactTable({
+    const table = useTable({
+        features: dataTableFeatures,
         data,
         columns,
         initialState: {
@@ -61,11 +59,7 @@ const DataTable = <TData,>({
                 pageSize: initialPageSize,
             },
         },
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
         onSortingChange: setSorting,
-        getSortedRowModel: getSortedRowModel(),
-        getFilteredRowModel: getFilteredRowModel(),
         state: {
             sorting,
             columnFilters,
@@ -102,7 +96,7 @@ const DataTable = <TData,>({
                         {table.getRowModel().rows?.length ? (
                             table.getRowModel().rows.map((row) => (
                                 <TableRow key={row.id}>
-                                    {row.getVisibleCells().map((cell) => (
+                                    {row.getAllCells().map((cell) => (
                                         <TableCell key={cell.id}>
                                             {flexRender(
                                                 cell.column.columnDef.cell,
@@ -139,7 +133,7 @@ const DataTable = <TData,>({
                                 key={page}
                                 onClick={() => table.setPageIndex(page)}
                                 disabled={
-                                    table.getState().pagination.pageIndex ===
+                                    table.state.pagination.pageIndex ===
                                     page
                                 }
                                 className="px-2"

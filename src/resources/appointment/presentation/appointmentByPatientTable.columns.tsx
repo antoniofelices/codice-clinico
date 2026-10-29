@@ -1,4 +1,4 @@
-import type { ColumnDef } from '@tanstack/react-table'
+import type { DataTableColumnDef } from '@shared/components/ui/DataTable.features'
 import type { AppointmentType } from '@resources/appointment/types/appointment.model'
 import { ArrowUpDown, Check } from 'lucide-react'
 import { transformDate, transformTime } from '@shared/utils/utils'
@@ -16,7 +16,7 @@ import { contentES as content } from './appointmentByPatientTable.content'
 const appointmentByPatientTableColumns = (
     onStatusChange: (appointmentId: string, newStatus: string) => void,
     onCalledChange: (appointmentId: string, called: boolean) => void
-): ColumnDef<AppointmentType>[] => [
+): DataTableColumnDef<AppointmentType>[] => [
     {
         id: 'day',
         accessorKey: 'start',

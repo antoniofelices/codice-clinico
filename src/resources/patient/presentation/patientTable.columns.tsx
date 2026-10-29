@@ -1,4 +1,4 @@
-import type { ColumnDef } from '@tanstack/react-table'
+import type { DataTableColumnDef } from '@shared/components/ui/DataTable.features'
 import type { NavigateFn } from '@tanstack/react-router'
 import type { PatientType } from '@resources/patient/types/patient.model'
 import { ArrowUpDown, ArrowRight } from 'lucide-react'
@@ -6,7 +6,7 @@ import { contentES as content } from './patientTable.content'
 
 const patientTableColumns = (
     navigate: NavigateFn
-): ColumnDef<PatientType>[] => [
+): DataTableColumnDef<PatientType>[] => [
     {
         accessorKey: 'firstName',
         header: ({ column }) => {

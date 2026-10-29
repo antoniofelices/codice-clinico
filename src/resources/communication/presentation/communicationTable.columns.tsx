@@ -1,10 +1,10 @@
-import type { ColumnDef } from '@tanstack/react-table'
+import type { DataTableColumnDef } from '@shared/components/ui/DataTable.features'
 import type { CommunicationType } from '@resources/communication/types/communication.model'
 import { ArrowUpDown } from 'lucide-react'
 import { transformDate } from '@shared/utils/utils'
 import { contentES as content } from './communicationTable.content'
 
-const communicationTableColumns = (): ColumnDef<CommunicationType>[] => [
+const communicationTableColumns = (): DataTableColumnDef<CommunicationType>[] => [
     {
         accessorKey: 'title',
         header: ({ column }) => (
